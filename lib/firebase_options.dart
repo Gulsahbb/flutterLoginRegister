@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -41,48 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAnVFelXbR624iJJAK6RTVXIwYX_aP_ns8',
-    appId: '1:2239947884:web:94e295825cd4521ec3e449',
-    messagingSenderId: '2239947884',
-    projectId: 'flutterloginregister-f63ad',
-    authDomain: 'flutterloginregister-f63ad.firebaseapp.com',
-    storageBucket: 'flutterloginregister-f63ad.firebasestorage.app',
-    measurementId: 'G-Z9WWWMHEFJ',
+    apiKey: 'AIzaSyAvkUkzWHMjNO9lQJF3BZyQUYYqawXxrgk',
+    appId: '1:232411408300:web:c31e6563daa1205fea3c09',
+    messagingSenderId: '232411408300',
+    projectId: 'denemeg-59bfe',
+    authDomain: 'denemeg-59bfe.firebaseapp.com',
+    storageBucket: 'denemeg-59bfe.firebasestorage.app',
+    measurementId: 'G-J6KPVEP6VP',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD8ThAh9WzNidyYL8pVQm9fTzqa7S5iLFs',
-    appId: '1:2239947884:android:1b82a420555b6c25c3e449',
-    messagingSenderId: '2239947884',
-    projectId: 'flutterloginregister-f63ad',
-    storageBucket: 'flutterloginregister-f63ad.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBv7t9gY9PktPffL-9niM1wvbyjWwyIT_M',
-    appId: '1:2239947884:ios:899540b9836c56b7c3e449',
-    messagingSenderId: '2239947884',
-    projectId: 'flutterloginregister-f63ad',
-    storageBucket: 'flutterloginregister-f63ad.firebasestorage.app',
-    iosBundleId: 'com.example.flutterLoginRegister',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBv7t9gY9PktPffL-9niM1wvbyjWwyIT_M',
-    appId: '1:2239947884:ios:899540b9836c56b7c3e449',
-    messagingSenderId: '2239947884',
-    projectId: 'flutterloginregister-f63ad',
-    storageBucket: 'flutterloginregister-f63ad.firebasestorage.app',
-    iosBundleId: 'com.example.flutterLoginRegister',
+    apiKey: 'AIzaSyCY0sU64Zdq6eNB96c8-bSObz5mwtZQBkQ',
+    appId: '1:232411408300:android:2448e8436547d811ea3c09',
+    messagingSenderId: '232411408300',
+    projectId: 'denemeg-59bfe',
+    storageBucket: 'denemeg-59bfe.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAnVFelXbR624iJJAK6RTVXIwYX_aP_ns8',
-    appId: '1:2239947884:web:4fac71d9ec9a10b2c3e449',
-    messagingSenderId: '2239947884',
-    projectId: 'flutterloginregister-f63ad',
-    authDomain: 'flutterloginregister-f63ad.firebaseapp.com',
-    storageBucket: 'flutterloginregister-f63ad.firebasestorage.app',
-    measurementId: 'G-DVF56FCSVB',
+    apiKey: 'AIzaSyAvkUkzWHMjNO9lQJF3BZyQUYYqawXxrgk',
+    appId: '1:232411408300:web:2d1d42f953f511f2ea3c09',
+    messagingSenderId: '232411408300',
+    projectId: 'denemeg-59bfe',
+    authDomain: 'denemeg-59bfe.firebaseapp.com',
+    storageBucket: 'denemeg-59bfe.firebasestorage.app',
+    measurementId: 'G-4YTGLCHG5X',
   );
 }

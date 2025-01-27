@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "2239947884",
-    "project_id": "flutterloginregister-f63ad",
-    "storage_bucket": "flutterloginregister-f63ad.firebasestorage.app"
+    "project_number": "232411408300",
+    "project_id": "denemeg-59bfe",
+    "storage_bucket": "denemeg-59bfe.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:2239947884:android:1b82a420555b6c25c3e449",
+        "mobilesdk_app_id": "1:232411408300:android:2448e8436547d811ea3c09",
         "android_client_info": {
           "package_name": "com.example.flutter_login_register"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD8ThAh9WzNidyYL8pVQm9fTzqa7S5iLFs"
+          "current_key": "AIzaSyCY0sU64Zdq6eNB96c8-bSObz5mwtZQBkQ"
         }
       ],
       "services": {
