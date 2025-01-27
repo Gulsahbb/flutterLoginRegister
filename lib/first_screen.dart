@@ -93,7 +93,7 @@ class FirstScreen extends StatelessWidget {
                   ),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, // Yatay padding'i azalttım
+                      horizontal: 10.0, // Yatay padding'i azalttım
                       vertical: 12.0, // Dikey padding'i azalttım
                     ),
                   ),
