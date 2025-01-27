@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_register/TEST1/bottom_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_login_register/TEST1/forgot_password.dart';
 import 'package:flutter_login_register/TEST1/register.dart';
 
 class Login extends StatefulWidget {
@@ -218,6 +219,12 @@ class _LoginState extends State<Login> {
                             TextButton(
                               onPressed: () {
                                 // Şifremi unuttum işlemleri
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ForgotPassword()),
+                                );
                               },
                               child: const Text(
                                 'Şifremi Unuttum',
