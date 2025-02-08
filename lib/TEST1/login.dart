@@ -20,24 +20,37 @@ class _LoginState extends State<Login> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isLoading = false;
-/*
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email adresi gerekli';
+    }
+    final emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Geçerli bir e-posta adresi girin';
+    }
+    return null;
   }
 
-  void _handleLogin() {
-    if (_formKey.currentState!.validate()) {
-      // Burada login işlemleri yapılacak
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomNavbar()),
-      );
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Şifreyi girin';
     }
+    if (value.length < 8) {
+      return 'Şifre en az 8 karakter olmalı';
+    }
+    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return 'Şifre en az bir büyük harf içermeli';
+    }
+    if (!RegExp(r'[a-z]').hasMatch(value)) {
+      return 'Şifre en az bir küçük harf içermeli';
+    }
+    if (!RegExp(r'[0-9]').hasMatch(value)) {
+      return 'Şifre en az bir rakam içermeli';
+    }
+    return null;
   }
-*/
 
   Future<void> _handleLogin() async {
     if (_formKey.currentState!.validate()) {
@@ -52,13 +65,6 @@ class _LoginState extends State<Login> {
           password: _passwordController.text,
         );
         if (userCredential.user != null) {
-          // Giriş başarılı
-          /*   ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Giriş başarılı!'),
-              backgroundColor: Colors.green,
-            ),
-          );*/
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const BottomNavbar()),
@@ -97,19 +103,17 @@ class _LoginState extends State<Login> {
   }
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).primaryColor,
-              Theme.of(context).primaryColor.withOpacity(0.5),
-            ],
-          ),
-        ),
+        color: Theme.of(context).primaryColor,
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -117,14 +121,14 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Logo veya İkon
+                  // Logo or Icon
                   Icon(
                     Icons.account_circle,
                     size: 100,
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white70,
                   ),
                   const SizedBox(height: 40),
-                  // Hoşgeldin Mesajı
+                  // Welcome Message
                   const Text(
                     'Hoş Geldiniz',
                     style: TextStyle(
@@ -134,11 +138,12 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   const SizedBox(height: 8),
+                  // Detail Message
                   Text(
                     'Hesabınıza giriş yapın',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white60,
                     ),
                   ),
                   const SizedBox(height: 40),
@@ -152,15 +157,7 @@ class _LoginState extends State<Login> {
                           controller: _emailController,
                           hintText: 'Email',
                           prefixIcon: Icons.email,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Email adresi gerekli';
-                            }
-                            if (!value.contains('@')) {
-                              return 'Geçerli bir email adresi girin';
-                            }
-                            return null;
-                          },
+                          validator: _validateEmail,
                         ),
                         const SizedBox(height: 16),
                         // Password TextField
@@ -168,6 +165,7 @@ class _LoginState extends State<Login> {
                           controller: _passwordController,
                           hintText: 'Şifre',
                           prefixIcon: Icons.lock,
+                          validator: _validatePassword,
                           obscureText: !_isPasswordVisible,
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -182,21 +180,13 @@ class _LoginState extends State<Login> {
                               });
                             },
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Şifre gerekli';
-                            }
-                            if (value.length < 6) {
-                              return 'Şifre en az 6 karakter olmalı';
-                            }
-                            return null;
-                          },
                         ),
                         const SizedBox(height: 8),
                         // Remember Me & Forgot Password
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // Remember Me
                             Row(
                               children: [
                                 Checkbox(
@@ -206,9 +196,9 @@ class _LoginState extends State<Login> {
                                       _rememberMe = value ?? false;
                                     });
                                   },
-                                  fillColor:
-                                      MaterialStateProperty.all(Colors.white),
+                                  activeColor: Colors.white,
                                   checkColor: Theme.of(context).primaryColor,
+                                  side: BorderSide(color: Colors.white),
                                 ),
                                 const Text(
                                   'Beni Hatırla',
@@ -218,7 +208,7 @@ class _LoginState extends State<Login> {
                             ),
                             TextButton(
                               onPressed: () {
-                                // Şifremi unuttum işlemleri
+                                // Forgot Password
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -270,7 +260,7 @@ class _LoginState extends State<Login> {
                             Text(
                               'Hesabınız yok mu? ',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white70,
                               ),
                             ),
                             TextButton(
@@ -317,18 +307,18 @@ class _LoginState extends State<Login> {
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+        hintStyle: TextStyle(color: Colors.white60),
         prefixIcon: Icon(prefixIcon, color: Colors.white70),
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: Colors.white.withOpacity(0.1),
+        fillColor: Colors.white10,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+          borderSide: BorderSide(color: Colors.white10),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
