@@ -7,7 +7,7 @@ class BottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Bottom Nav Bar'),
+        child: Text('Bottom Nav Bar'),// Burada alt kısımda bulunmasını istediğim iconbuttonlar olacak. 
       ),
     );
   }
