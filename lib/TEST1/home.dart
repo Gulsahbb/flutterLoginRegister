@@ -15,7 +15,12 @@ class _HomeState extends State<Home> {
         title: const Text('Ana Sayfa'),
       ),
       body: const Center(
-        child: Text('Ana Sayfa İçeriği'),
+        child: Column(
+          children[
+          Text('Ana Sayfa İçeriği'),
+          Text('Görsel ve yazılar ekle. '), 
+         ] 
+         ), 
       ),
     );
   }
